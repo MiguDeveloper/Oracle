@@ -1,0 +1,17 @@
+* Tabla: objeto de base de datos que contiene sus datos. la información sobre todas las tablas se guarda
+en el diccionario de datos; con esta información Oracle le permite mantener los datos que se encuentran en
+su tabla.
+
+* Vista: permite  examinar una selección personalizada de una o varias tablas, y utiliza una consulta SQL
+almacenda en la base de datos. Cuando se utilizan vistas,  la sentencia SQL en la que se define la vista se ejecuta
+como si usted mismo hubiera codificado la sentencia de definición.
+  - proporcionan un nivel adicional de seguridad
+  - permiten la complejidad de los datos.
+  - no ayudan a mantener unos nombre razonables. Amenudo cuando creamos nombres de columnas para una base de datos,
+    nos olvidamos de que los usuarios tienen que escribir dichos nombres.
+
+* Indice: un indice es una copia en miniatura de una tabla. Las entradas de indice de una tabla le proporcionan a Oracle
+un rapido acceso a los datos de las tablas.
+
+* Diccionario de datos: lo mantiene Oracle y contiene información relevante sobre las tablas que se encuentran en la base
+de datos.
