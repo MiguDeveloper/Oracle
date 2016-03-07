@@ -1,3 +1,15 @@
+-- Pl/SQL
+-- Lenguaje de procesamiento procedimental y dispone de construcciones de programación similares
+-- a  las de la mayoria de los lenguajes de programación. Existen dos versiones  de PL/SQL
+-- una de ellas forma parte del motor de base de datos, la otra es un motor independiente que se encuentra
+-- incorporado en varias herramientas de Oracle.
+
+-- Simbolos
+-- := asignación
+-- /* */ delimitador de comentario
+-- || concatenador
+
+
 -- Obtener un resumen de la tabla y de todas sus columnas
 DESCRIBE EMPRESA_MODULOS;
 
@@ -11,6 +23,20 @@ SELECT APELLIDO, CO, VENTAS FROM CLIENTE WHERE COD_PROV = 'CA' AND VENTAS>6000;
 SELECT APELLIDO, CO, VENTAS FROM CLIENTE WHERE COD_PROV != 'MA';
 SELECT APELLIDO, CO, VENTAS FROM CLIENTE WHERE VENTAS BETWEEN 1000 AND 5000;
 
+-- Update: actualizar campos
+UPDATE TABLA SET CAMPOS WHERE CONDICION;
+UPDATE CLIENTE SET VENTAS=2000 WHERE COD_CLIENTE=34;
+
+-- Delete: eliminar una o varias filas
+DELETE FROM TABLA WHERE CONDICION;
+DELETE FROM CLIENTE WHERE COD_CLIENTE=1;
+
+-- Alter: modificar la tabla
+ALTER TABLE CLIENTE ADD(FECHA_VENTA DATE);
+-- ahora modificaremos el tipo de dato de una tabla
+ALTER TABLE NOMBRE_TABLA MODIFY(NOMBRE_CAMPO NUEVA_DEFINICION);
+ALTER TABLE LIBROS MODIFY(PRECIO NUMBER(6,2) NOT NULL);
+
 -- Oracle dispone de un completo conjunto de operaciones para restringir las filas
 -- que se recuperan
 
@@ -20,6 +46,10 @@ SELECT*FROM CLIENTE WHERE APELLIDO LIKE '%TIN%'
 
 -- Order by(cuando no se especifica se utiliza el orden ascendente)
 SELECT * FROM CLIENTE ORDER BY COD_PROV, APELLIDO;
+
+-- Operación de comparación habituales
+-- IN : igual a cualquiera de los miembros entre paréntesis
+SELECT * FROM EMPLEADO WHERE COD_PROV IN('CD','WD')
 
 -- Utilización de funciones con el tipo de datos number
 -- abs : se obtiene el valor absoluto abs(-321) = 321
@@ -103,3 +133,48 @@ SELECT TO_NUMBER('6354') FROM DUAL;
 
 -- TO_DATE: convierte datos de tipo character al formato adecuado del tipo de datos DATE
 SELECT TO_DATE('12-DEC-16') FROM DUAL;
+
+
+/*
+ * COMPONENTES DE PL/SQL
+ */
+
+-- ESTRUCTURA LOGICA IF
+
+IF VAR1>1O THEN
+  VAR2 := VAR1 + 20;
+ELSEIF VAR1 BETWEEN 7 AND 8 THEN
+  VAR2 := 2 * VAR1;
+ELSE
+  VAR2 := VAR1 * VAR1;
+END IF;
+
+
+-- BUCLES
+CNT := 1; --inicializamos el concatenador
+
+LOOP  -- comienzo del bucle
+  CNT := CNT + 1;
+  IF CNT >100
+    EXIT;
+  END IF;
+  ...
+  ...
+END LOOP -- finalizar el bucle
+
+
+CNT := 1; --inicializamos el concatenador
+LOOP  -- comienzo del bucle
+  CNT := CNT + 1;
+  EXIT WHEN CNT > 100;
+  ...
+  ...
+END LOOP -- finalizar el bucle
+
+-- bucle while
+CNT := 1;
+WHILE CNT <= 100 LOOP
+  ...
+  CNT := CNT +1;
+  ...
+END LOOP;
