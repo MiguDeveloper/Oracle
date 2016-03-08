@@ -1,0 +1,69 @@
+-- Cursores
+
+DECLARE CURSOR MY_CURSOR IS
+  SELECT NOMBRE, APELLIDO, NSS FROM PERSONA WHERE PIN = PASSED_PIN;
+
+
+DECLARE
+  V_NOMB VARCHAR2(10),
+  V_APE VARCHAR2(30),
+  V_NUM_SSOC VARCHAR2(8),
+  CURSOR MY_CURSOR IS
+    SELECT NOMBRE, APELLIDO, NSS FROM PERSONA WHERE PIN = PIN_IN;
+
+BEGIN
+  OPEN MY_CURSOR;
+  FETCH MY_CURSOR INTO V_NOMB,V_APE,V_NUM_SSOC;
+  IF MY_CURSOR%FOUND THEN
+    NULL;
+  ELSE
+    INSERT INTO E(TAB) VALUES(V_NOMB);
+  END IF;
+END;
+
+
+DECLARE
+   CURSOR C1 IS SELECT nombre, apellido FROM arbitro;
+   V_nom VARCHAR2(12);
+   V_ape    VARCHAR2(20);
+BEGIN
+   OPEN C1;
+   LOOP
+      FETCH C1 INTO V_nom, V_ape;
+      EXIT WHEN C1%NOTFOUND;
+      DBMS_OUTPUT.PUT_LINE(V_nom || '' || V_ape);
+   END LOOP;
+   CLOSE C1;
+END;
+
+
+-- Veamos ahora un ejemplo de utilización de %ROWCOUNT:
+
+DECLARE
+   CURSOR C1 IS SELECT nombre from futbolista WHERE Cod='e1';
+   V_nom VARCHAR2(15);
+BEGIN
+  OPEN C1;
+  LOOP
+    FETCH C1 INTO V_nom;
+    EXIT WHEN C1%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE (C1%ROWCOUNT || V_nom);
+  END LOOP;
+  CLOSE C1;
+END;
+
+CREATE OR REPLACE PROCEDURE ver_futbolistas_por_equipos(codeq VARCHAR2)
+IS
+   V_equi VARCHAR2(3);
+   CURSOR C1 IS SELECT nombre from futbolista where codeq=V_equi;
+   V_nom VARCHAR(15);
+BEGIN
+   V_equi := codeq;
+   OPEN C1;
+   FETCH C1 INTO V_nom;
+   WHILE C1%FOUND LOOP
+      DBMS_OUTPUT.PUT_LINE(V_nom);
+      FETCH C1 INTO V_nom;
+   END LOOP;
+   CLOSE C1;
+END;

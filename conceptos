@@ -10,6 +10,24 @@ como si usted mismo hubiera codificado la sentencia de definición.
   - no ayudan a mantener unos nombre razonables. Amenudo cuando creamos nombres de columnas para una base de datos,
     nos olvidamos de que los usuarios tienen que escribir dichos nombres.
 
+* Cursores: Pl/SQL utiliza cursores para la gestión de las sentencias SELECT. los cursores son fragmentos de memoria
+asignados a procesar estas sentencias. La sentencia definida sólo debe contener sentencias SELECT y no INSERT, UPDATE
+o DELETE.
+
+  Componentes:
+  - el cursor se define en la sección DECLARE.
+  - el cursor se abre despues del BEGIN.
+  - el cursor se uiliza para obtener datos de una o varias variables. Debe haber el mismo número de variables
+    receptoras en la operacion FETCH(obtener) que columnas en la lista SELECT del cursor.
+
+  Atributos del cursor
+  Para conocer detalles de la situación del cursor tenemos 4 atributos:
+  - %FOUND: devuelve verdadero Si el ultimo FETCH ha recuperado algún valor; en caso contrario devuelve falso; si el cursor no esta abierto nos devuelve error.
+  - %NOTFOUND: hace justamente lo contrario al anterior.
+  - %ROWCOUNT: nos devuelve el número de filas recuperadas hasta el momento.
+  - %ISOPEN: devuelve verdadero si el cursor esta abierto.
+
+
 * Indice: un indice es una copia en miniatura de una tabla. Las entradas de indice de una tabla le proporcionan a Oracle
 un rapido acceso a los datos de las tablas.
 
