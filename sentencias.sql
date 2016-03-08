@@ -1,9 +1,3 @@
--- Pl/SQL
--- Lenguaje de procesamiento procedimental y dispone de construcciones de programación similares
--- a  las de la mayoria de los lenguajes de programación. Existen dos versiones  de PL/SQL
--- una de ellas forma parte del motor de base de datos, la otra es un motor independiente que se encuentra
--- incorporado en varias herramientas de Oracle.
-
 -- Simbolos
 -- := asignación
 -- /* */ delimitador de comentario

@@ -1,3 +1,9 @@
+-- Pl/SQL
+-- Lenguaje de procesamiento procedimental y dispone de construcciones de programación similares
+-- a  las de la mayoria de los lenguajes de programación. Existen dos versiones  de PL/SQL
+-- una de ellas forma parte del motor de base de datos, la otra es un motor independiente que se encuentra
+-- incorporado en varias herramientas de Oracle.
+
 * Tabla: objeto de base de datos que contiene sus datos. la información sobre todas las tablas se guarda
 en el diccionario de datos; con esta información Oracle le permite mantener los datos que se encuentran en
 su tabla.
