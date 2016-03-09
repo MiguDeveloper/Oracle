@@ -42,7 +42,7 @@ SELECT*FROM CLIENTE WHERE APELLIDO LIKE '%TIN%'
 SELECT * FROM CLIENTE ORDER BY COD_PROV, APELLIDO;
 
 -- Operación de comparación habituales
--- IN : igual a cualquiera de los miembros entre paréntesis
+-- IN : igual a cualquiera de los miembros entre paréntesis. In= permite saber si una expresión pertenece o no a un conjunto de valores.
 SELECT * FROM EMPLEADO WHERE COD_PROV IN('CD','WD')
 
 -- Utilización de funciones con el tipo de datos number
@@ -63,13 +63,50 @@ SELECT MOD(7,5) FROM DUAL -- 2
 SELECT POWER(3,2) FROM DUAL -- 9
 
 -- ROUND(N,M): resultado redondeado a m cifras a la derecha del punto decimal
-SELECT ROUND(1234,5678,2) FROM DUAL -- 1234,57
+SELECT ROUND(1234.5678,2) FROM DUAL; -- 1234.57
+TRUNC (NUMERO,M);
 
--- SING(N): Si n=0, devuelve 0; si n>0 devuelve 1; si n<0 devuelve -1
+-- SING(N): Si n=0, devuelve 0; si n>0 devuelve 1; si n<0 devuelve -1 no indica el signo de la variable
 SELECT SING(12) FROM DUAL -- 1
 
 -- SQRT(M,N): Raiz cuadrada de n
 SELECT SQRT(25) FROM DUAL -- 5
+
+-- Calcula el máximo
+MAX(EXPRESION);
+
+--Calcula el minimo
+MIN(EXPRESION);
+
+-- Obtiene la suma de los valores de la expreión
+SUM(EXPRESION);
+
+-- Obtiene el mayor valor de la lista
+GREATEST(VALOR1,VALOR2);
+
+-- Obtiene el menor valor de la lista
+LEAST(VALOR1,VALOR2);
+
+-- Devuelve "cad1" concatenada con "cad2".
+CONCAT (cad1, cad2);
+
+-- Devuelve la cadena "cad" en mayúsculas
+LOWER (cad);
+
+-- Devuelve la cadena "cad" en minúsculas.
+UPPER (cad)=
+
+-- Suprime un conjunto de caracteres a la izquierda de la cadena.
+LTRIM (cad [,set]);
+
+-- Suprime un conjunto de caracteres a la derecha de la cadena.
+RTRIM (cad [,set]);
+
+-- Sustituye un carácter o caracteres de una cadena con 0 o mas caracteres.
+REPLACE (cad, cadena_busqueda [, cadena_sustitucion]);
+
+-- Obtiene parte de una cadena.
+SUBSTR (cad, m [,n]);
 
 
 -- FUNCIONES HABITUALES para datos de tipo caracter
@@ -132,6 +169,60 @@ SELECT TO_DATE('12-DEC-16') FROM DUAL;
 /*
  * COMPONENTES DE PL/SQL
  */
+
+/* Uso de los atributos %TYPE y %ROWTYPE
+    %TYPE: declara una variable del mismo tipo que otra, o que una columna de una tabla
+    %ROWTYPE : crea una variable registro cuyos campos se corresponden con las columnas de una tabla o vista.
+*/
+
+DECLARE
+  v_employee_id NUMBER(6);
+  v_hire_date DATE;
+  v_last_name VARCHAR2(25);
+BEGIN
+  SELECT employee_id, last_name, hire_date
+    INTO v_employee_id, v_last_name, v_hire_date
+    FROM employees
+    WHERE rownum = 1;
+END;
+
+DECLARE
+  v_employee_id employees.employee_id%TYPE;
+  v_hire_date employees.hire_date%TYPE;
+  v_last_name employees.last_name%TYPE;
+BEGIN
+  SELECT employee_id, last_name, hire_date
+    INTO v_employee_id, v_last_name, v_hire_date
+    FROM employees
+    WHERE rownum = 1;
+END;
+
+
+
+DECLARE
+  v_employees employees%ROWTYPE;
+BEGIN
+  SELECT *
+    INTO v_employees
+    FROM employees
+    WHERE rownum = 1;
+END;
+
+-- Esta recoge la totalidad de las columnas y los ponga a disposición en su programa. 
+-- Puede detallar cada una de las columnas en su lista de selección como este:
+
+DECLARE
+  v_employees employees%ROWTYPE;
+BEGIN
+  SELECT employee_id, first_name, last_name,
+         email, phone_number, hire_date, job_id, salary,
+         commission_pct, manager_id, department_id
+    INTO v_employees
+    FROM employees
+    WHERE rownum = 1;
+END;
+
+
 
 -- ESTRUCTURA LOGICA IF
 

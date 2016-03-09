@@ -4,6 +4,16 @@
 -- una de ellas forma parte del motor de base de datos, la otra es un motor independiente que se encuentra
 -- incorporado en varias herramientas de Oracle.
 
+* Tipos de datos
+Este lenguaje dispone de los mismo tipos de datos que podemos encontrar en SQL, pero además se han incorporado algunos nuevos:
+  - char(n): almacena una cantidad fija de caracteres
+  - varchar2(n): almacena cadenas de caracteres de longitudes variables
+  - long(n): almacena cadenas de longitud variable
+  - number(p,e): almacena numero de precisión p y escala e
+  - boolean: almacena valores lógicos, true, false o NULL
+  - date: almacena fechas completas, incluida la hora
+
+
 * Tabla: objeto de base de datos que contiene sus datos. la información sobre todas las tablas se guarda
 en el diccionario de datos; con esta información Oracle le permite mantener los datos que se encuentran en
 su tabla.
